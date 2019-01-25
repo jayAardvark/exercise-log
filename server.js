@@ -11,8 +11,13 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+//api routes
 const newUser = require("./routes/api/newUser");
 app.use("/api/exercise/new-user", newUser);
+const getUsers = require("./routes/api/getUsers");
+app.use("/api/exercise/users", getUsers);
+const addExercise = require("./routes/api/addExercise");
+app.use("/api/exercise/add", addExercise);
 
 app.get("/", (req, res) => res.send("Hello!"));
 

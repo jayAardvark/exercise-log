@@ -4,7 +4,9 @@ const User = require("../../models/User");
 
 router.get("/test", (req, res) => res.json({ test: "hey!" }));
 
-//get username and return object with name and _id
+//@route POST /api/exercise/new-user
+//@description allows user to post name to db. returns user data
+//@access PUBLIC
 router.post("/", (req, res) => {
   let userName = new User({
     username: req.body.username
