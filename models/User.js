@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 //create models. keep in mind, keys that will appear later were not added initially (may cause trouble).
-let userSchema = new mongoose.Schema({
+let userSchema = new Schema({
   username: String,
   count: Number,
   log: [{ description: String, duration: String, date: String }] //may need to refactor this with an object

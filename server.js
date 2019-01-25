@@ -6,6 +6,10 @@ mongoose
   .connect(db)
   .then(() => console.log("db connection successful!"))
   .catch(err => console.log(err));
+const bodyParser = require("body-parser");
+//body-parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 const newUser = require("./routes/api/newUser");
 app.use("/api/exercise/new-user", newUser);
