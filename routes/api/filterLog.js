@@ -10,6 +10,16 @@ router.get("/", (req, res) => {
   let from = req.body.from;
   let to = req.body.to;
 
-  res.json({ user, from, to });
+  User.findById(user, (err, data) => {
+    if (err) {
+      res.status(404).json({ error: "Could not find user!" });
+      console.log("error");
+    } else {
+      //create logic for filtering exercise log by date
+      let dataLog = data.log;
+      let filtereLog = dataLog.filter(y => y.date >= from && y.date <= to);
+      res.json({ filtereLog });
+    }
+  });
 });
 module.exports = router;
