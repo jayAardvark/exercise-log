@@ -41,6 +41,7 @@ router.post("/", (req, res) => {
 
   User.findById(id, (err, data) => {
     if (err) {
+      res.status(404).json({ error: "Invalid input" });
       console.log("error");
     } else {
       //console.log(data.username);
@@ -60,6 +61,7 @@ router.post("/", (req, res) => {
       data.markModified(data.log);
       data.save((err, data) => {
         if (err) {
+          res.status(404).json({ error: "Error saving" });
           console.log("error saving");
         } else {
           console.log("saved");
