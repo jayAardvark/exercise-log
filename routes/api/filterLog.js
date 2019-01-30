@@ -6,9 +6,9 @@ const User = require("../../models/User");
 //@description GETs object of logs filtered by given dates
 //@access PUBLIC
 router.get("/", (req, res) => {
-  let user = req.body.userId;
-  let from = req.body.from;
-  let to = req.body.to;
+  let user = req.query.userId;
+  let from = req.query.from;
+  let to = req.query.to;
 
   User.findById(user, (err, data) => {
     if (err) {
