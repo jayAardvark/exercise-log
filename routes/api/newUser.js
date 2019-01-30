@@ -8,21 +8,25 @@ router.get("/test", (req, res) => res.json({ test: "hey!" }));
 //@description allows user to post name to db. returns user data
 //@access PUBLIC
 router.post("/", (req, res) => {
-  let userName = new User({
-    username: req.body.username
-  });
-  //   userName.save((err, data) => {
-  //     if (err) {
-  //       console.log("error");
-  //     } else {
-  //       console.log(data);
-  //     }
-  //   });
-  //   res.json(userName);
-  userName
-    .save()
-    .then(user => res.json(user))
-    .catch(err => console.log(err));
+  if (req.body.username) {
+    let userName = new User({
+      username: req.body.username
+    });
+    //   userName.save((err, data) => {
+    //     if (err) {
+    //       console.log("error");
+    //     } else {
+    //       console.log(data);
+    //     }
+    //   });
+    //   res.json(userName);
+    userName
+      .save()
+      .then(user => res.json(user))
+      .catch(err => console.log(err));
+  } else {
+    res.status(400).json({ error: "Enter a username!" });
+  }
 });
 
 module.exports = router;

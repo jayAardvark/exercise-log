@@ -19,7 +19,7 @@ class Add extends Component {
       <div>
         <h2>hey</h2>
         <form onSubmit={this.onSubmit}>
-          <input type="text" name="username" />
+          <input type="text" name="username" placeholder="username" />
           <button>Submit</button>
         </form>
       </div>
