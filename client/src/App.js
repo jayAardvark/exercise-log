@@ -5,7 +5,8 @@ import AddName from "./components/AddName";
 import AddJogLog from "./components/AddJogLog";
 import FilterLog from "./components/FilterLog";
 import SeeAllLogs from "./components/SeeAllLogs";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import Welcome from "./components/Welcome";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class App extends Component {
   render() {
@@ -13,10 +14,12 @@ class App extends Component {
       <Router>
         <div className="App">
           <h1>test</h1>
-          <a href="/api/exercise/new-user">new user</a>
-          <a href="/api/exercise/add">add to log</a>
-          <a href="/api/exercise/all-logs">see all logs</a>
-          <a href="/api/exercise/filter-log">filter logs by date</a>
+          <Link to="/">Home</Link>
+          <Link to="/api/exercise/new-user">new user</Link>
+          <Link to="/api/exercise/add">add to log</Link>
+          <Link to="/api/exercise/all-logs">see all logs</Link>
+          <Link to="/api/exercise/filter-log">filter logs by date</Link>
+          <Route exact path="/" component={Welcome} />
           {/*<AddName />*/}
           <Route exact path="/api/exercise/new-user" component={AddName} />
           {/*<AddJogLog />*/}
