@@ -20,9 +20,94 @@ class App extends Component {
     };
   }
 
+  filterLog = e => {
+    e.preventDefault();
+
+    //userId is based on conditional below
+    //if the placeholder contains the userId
+    //passed as props, then it becomes the user
+    //for the code here
+    let userId;
+    if (e.target.userId.placeholder != "userId") {
+      userId = e.target.userId.placeholder;
+    } else {
+      userId = e.target.userId.value;
+    }
+
+    //let userId = e.target.userId.value;
+    let username = e.target.username.value;
+    let from = e.target.from.value;
+    let to = e.target.to.value;
+
+    console.log(userId);
+
+    axios
+      .get(`/api/exercise/filter-log?userId=${userId}&from=${from}&to=${to}`)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
+  };
+
+  addJogLog = e => {
+    e.preventDefault();
+
+    //userId is based on conditional below
+    //if the placeholder contains the userId
+    //passed as props, then it becomes the user
+    //for the code here
+    let userId;
+    if (e.target.userId.placeholder != "userId") {
+      userId = e.target.userId.placeholder;
+    } else {
+      userId = e.target.userId.value;
+    }
+    //let userId = e.target.userId.value;
+    let username = e.target.username.value;
+    let duration = e.target.duration.value;
+    let date = e.target.date.value;
+
+    console.log("target below");
+    console.log(e.target.userId.placeholder);
+    //console.log(username);
+    //console.log(this.state.userId);
+
+    axios
+      .post("/api/exercise/add", {
+        userId: userId,
+        username: username,
+        duration: duration,
+        date: date
+      })
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
+  };
+
+  seeAllLogs = e => {
+    e.preventDefault();
+
+    //userId is based on conditional below
+    //if the placeholder contains the userId
+    //passed as props, then it becomes the user
+    //for the code here
+    let userId;
+    if (e.target.userId.placeholder != "userId") {
+      userId = e.target.userId.placeholder;
+    } else {
+      userId = e.target.userId.value;
+    }
+    //let userId = e.target.userId.value;
+
+    console.log(userId);
+
+    axios
+      .get(`/api/exercise/all-logs?userId=${userId}`)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
+  };
+
   submitId = async e => {
     e.preventDefault();
     // console.log(e.target.userId.value);
+
     let userId = e.target.userId.value;
 
     //combine axios with async await to access json data...
@@ -36,6 +121,10 @@ class App extends Component {
       userId: data._id,
       username: data.username
     });
+
+    if (this.state.userId) {
+      console.log("there is state!");
+    }
 
     // console.log(data._id);
     // console.log(data.username);
@@ -90,13 +179,37 @@ class App extends Component {
             exact
             path="/api/exercise/add"
             render={props => (
-              <AddJogLog {...props} userId={this.state.userId} />
+              <AddJogLog
+                {...props}
+                addJogLog={this.addJogLog}
+                userId={this.state.userId}
+              />
             )}
           />
           {/*<SeeAllLogs />*/}
-          <Route exact path="/api/exercise/all-logs" component={SeeAllLogs} />
+          <Route
+            exact
+            path="/api/exercise/all-logs"
+            render={props => (
+              <SeeAllLogs
+                {...props}
+                seeAllLogs={this.seeAllLogs}
+                userId={this.state.userId}
+              />
+            )}
+          />
           {/*<FilterLog />*/}
-          <Route exact path="/api/exercise/filter-log" component={FilterLog} />
+          <Route
+            exact
+            path="/api/exercise/filter-log"
+            render={props => (
+              <FilterLog
+                {...props}
+                filterLog={this.filterLog}
+                userId={this.state.userId}
+              />
+            )}
+          />
         </div>
       </Router>
     );

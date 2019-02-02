@@ -1,10 +1,9 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React from "react";
 
-class SubmitId extends Component {
-  render() {
-    return (
-      <form onSubmit={this.props.submitId}>
+export default function SubmitId(props) {
+  return (
+    <div>
+      <form onSubmit={props.submitId}>
         {/* consider inputs for city and state for those inclined.  also, geolocation */}
         <input
           type="text"
@@ -14,8 +13,6 @@ class SubmitId extends Component {
 
         <button>Submit</button>
       </form>
-    );
-  }
+    </div>
+  );
 }
-
-export default SubmitId;
