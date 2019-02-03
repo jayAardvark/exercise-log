@@ -5,13 +5,17 @@ export default function SeeAllLogs(props) {
     <div>
       <h3>See All Logs</h3>
       <form onSubmit={props.seeAllLogs}>
-        {props.userId ? (
-          <input type="text" name="userId" placeholder={props.userId} />
-        ) : (
-          <input type="text" name="userId" placeholder="userId" />
+        {props.userId ? null : (
+          <p>
+            You need to submit your userId above before you can see your
+            JogLogs.
+          </p>
         )}
-        <button>Submit</button>
+        <button>See all JogLogs!</button>
       </form>
+      {props.allLogs ? (
+        <p>{props.allLogs[0].date}</p> /*expand this out*/
+      ) : null}
     </div>
   );
 }
