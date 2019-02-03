@@ -15,6 +15,14 @@ export default function FilterLog(props) {
         <input type="text" name="to" placeholder="to" />
         <button>Submit</button>
       </form>
+      {props.filteredLog ? (
+        <p>
+          filtered log: date: {props.filteredLog[0].date} duration:{" "}
+          {props.filteredLog[0].duration} minutes
+        </p>
+      ) : (
+        <p>no filtered log</p>
+      )}
     </div>
   );
 }

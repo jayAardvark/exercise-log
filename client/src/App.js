@@ -16,92 +16,69 @@ class App extends Component {
     super();
     this.state = {
       userId: undefined,
-      username: undefined
+      username: undefined,
+      allLogs: [],
+      filteredLog: undefined,
+      duration: undefined,
+      date: undefined
     };
   }
 
-  filterLog = e => {
+  filterLog = async e => {
     e.preventDefault();
 
-    //userId is based on conditional below
-    //if the placeholder contains the userId
-    //passed as props, then it becomes the user
-    //for the code here
-    let userId;
-    if (e.target.userId.placeholder != "userId") {
-      userId = e.target.userId.placeholder;
-    } else {
-      userId = e.target.userId.value;
-    }
+    if (this.state.userId) {
+      let userId = this.state.userId;
+      let from = e.target.from.value;
+      let to = e.target.to.value;
 
-    //let userId = e.target.userId.value;
-    let username = e.target.username.value;
-    let from = e.target.from.value;
-    let to = e.target.to.value;
-
-    console.log(userId);
-
-    axios
-      .get(`/api/exercise/filter-log?userId=${userId}&from=${from}&to=${to}`)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err));
+      const res = await axios.get(
+        `/api/exercise/filter-log?userId=${userId}&from=${from}&to=${to}`
+      );
+      const { data } = await res;
+      this.setState({
+        filteredLog: data.filteredLog
+      });
+    } else return;
   };
 
-  addJogLog = e => {
+  addJogLog = async e => {
     e.preventDefault();
 
-    //userId is based on conditional below
-    //if the placeholder contains the userId
-    //passed as props, then it becomes the user
-    //for the code here
-    let userId;
-    if (e.target.userId.placeholder != "userId") {
-      userId = e.target.userId.placeholder;
-    } else {
-      userId = e.target.userId.value;
-    }
-    //let userId = e.target.userId.value;
-    let username = e.target.username.value;
-    let duration = e.target.duration.value;
-    let date = e.target.date.value;
+    if (this.state.userId) {
+      let userId = this.state.userId;
+      let duration = e.target.duration.value;
+      let date = e.target.date.value;
 
-    console.log("target below");
-    console.log(e.target.userId.placeholder);
-    //console.log(username);
-    //console.log(this.state.userId);
-
-    axios
-      .post("/api/exercise/add", {
+      const res = await axios.post("/api/exercise/add", {
         userId: userId,
-        username: username,
         duration: duration,
         date: date
-      })
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err));
+      });
+
+      const { data } = await res;
+      this.setState({
+        duration: data.duration,
+        date: data.date
+      });
+      console.log(data);
+      // .then(res => console.log(res.data))
+      // .catch(err => console.log(err));
+    } else return;
   };
 
-  seeAllLogs = e => {
+  seeAllLogs = async e => {
     e.preventDefault();
 
-    //userId is based on conditional below
-    //if the placeholder contains the userId
-    //passed as props, then it becomes the user
-    //for the code here
-    let userId;
-    if (e.target.userId.placeholder != "userId") {
-      userId = e.target.userId.placeholder;
-    } else {
-      userId = e.target.userId.value;
-    }
-    //let userId = e.target.userId.value;
-
-    console.log(userId);
-
-    axios
-      .get(`/api/exercise/all-logs?userId=${userId}`)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err));
+    if (this.state.userId) {
+      let userId = this.state.userId;
+      const res = await axios.get(`/api/exercise/all-logs?userId=${userId}`);
+      const { data } = await res;
+      console.log(data.log);
+      this.setState({
+        allLogs: data.log
+      });
+    } else return;
   };
 
   submitId = async e => {
@@ -119,22 +96,15 @@ class App extends Component {
 
     this.setState({
       userId: data._id,
-      username: data.username
+      username: data.username,
+      allLogs: data.log
     });
-
-    if (this.state.userId) {
-      console.log("there is state!");
-    }
-
-    // console.log(data._id);
-    // console.log(data.username);
   };
 
   addUsername = async e => {
     e.preventDefault();
 
     let username = e.target.username.value;
-    console.log(username);
 
     //combine axios with async await to access json data...
     const res = await axios.post("/api/exercise/new-user", {
@@ -143,7 +113,11 @@ class App extends Component {
     const { data } = await res;
     this.setState({
       userId: data._id,
-      username: data.username
+      username: data.username,
+      allLogs: [],
+      filteredLog: undefined,
+      duration: undefined,
+      date: undefined
     });
     console.log(data.username);
     console.log(data._id);
@@ -162,7 +136,7 @@ class App extends Component {
           {!this.state.userId ? (
             <SubmitId submitId={this.submitId} />
           ) : (
-            <p>Greetings, {this.state.username}</p>
+            <p>You are logged in as: {this.state.username}</p>
           )}
           <Route exact path="/" component={Welcome} />
           <Route exact path="/return-user" component={ReturnUser} />
@@ -171,7 +145,12 @@ class App extends Component {
             exact
             path="/api/exercise/new-user"
             render={props => (
-              <AddName {...props} addUsername={this.addUsername} />
+              <AddName
+                {...props}
+                addUsername={this.addUsername}
+                userId={this.state.userId}
+                username={this.state.username}
+              />
             )}
           />
           {/*<AddJogLog />*/}
@@ -183,6 +162,9 @@ class App extends Component {
                 {...props}
                 addJogLog={this.addJogLog}
                 userId={this.state.userId}
+                date={this.state.date}
+                duration={this.state.duration}
+                submitId={this.submitId}
               />
             )}
           />
@@ -195,6 +177,7 @@ class App extends Component {
                 {...props}
                 seeAllLogs={this.seeAllLogs}
                 userId={this.state.userId}
+                allLogs={this.state.allLogs}
               />
             )}
           />
@@ -207,6 +190,7 @@ class App extends Component {
                 {...props}
                 filterLog={this.filterLog}
                 userId={this.state.userId}
+                filteredLog={this.state.filteredLog}
               />
             )}
           />
