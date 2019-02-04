@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 //import axios from "axios";
 
 export default function AddJogLog(props) {
@@ -19,7 +20,13 @@ export default function AddJogLog(props) {
       </form>
       {props.duration && props.date ? (
         <p>
-          Congrats! You jogged for {props.duration} minutes on {props.date}.
+          Congrats on jogging and logging! <br />
+          Your most recent log was made for {props.duration} minutes on{" "}
+          {props.date}.
+          <br />
+          Jog more and add another log!
+          <br />
+          <Link to="/api/exercise/all-logs"> Click here for logs!</Link>
         </p>
       ) : null}
     </div>

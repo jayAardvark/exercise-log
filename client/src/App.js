@@ -18,7 +18,7 @@ class App extends Component {
       userId: undefined,
       username: undefined,
       allLogs: [],
-      filteredLog: undefined,
+      filteredLog: [],
       duration: undefined,
       date: undefined
     };
@@ -59,7 +59,12 @@ class App extends Component {
       const { data } = await res;
       this.setState({
         duration: data.duration,
-        date: data.date
+        date: data.date,
+        //updating the state of both logs upon
+        //submission of new log prevents awkward
+        //display logs missing most recent log
+        allLogs: [],
+        filteredLog: []
       });
       console.log(data);
       // .then(res => console.log(res.data))
@@ -132,7 +137,7 @@ class App extends Component {
           <Link to="/api/exercise/new-user"> new user</Link>
           <Link to="/api/exercise/add"> add to log</Link>
           <Link to="/api/exercise/all-logs"> see all logs</Link>
-          <Link to="/api/exercise/filter-log"> filter logs by date</Link>
+          <Link to="/api/exercise/filter-log"> logs by date</Link>
           {!this.state.userId ? (
             <SubmitId submitId={this.submitId} />
           ) : (

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Add(props) {
   return (
@@ -20,6 +21,8 @@ export default function Add(props) {
           <br />
           copy it and paste it somewhere safe! You'll use this userId to access
           your data whenever you return.
+          <br />
+          <Link to="/api/exercise/add"> Click here to begin!</Link>
         </p>
       ) : null}
     </div>

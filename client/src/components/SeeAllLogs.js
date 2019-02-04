@@ -17,14 +17,12 @@ export default function SeeAllLogs(props) {
       <h3>See All Logs</h3>
       <form onSubmit={props.seeAllLogs}>
         {props.userId ? null : (
-          <div>
-            <p>
-              You need to submit your userId above before you can see your
-              JogLogs.
-            </p>
-            <button>See all JogLogs!</button>
-          </div>
+          <p>
+            You need to submit your userId above before you can see your
+            JogLogs.
+          </p>
         )}
+        <button>See all JogLogs!</button>
       </form>
       {props.allLogs ? <div>{mappedLogs}</div> : null}
     </div>
