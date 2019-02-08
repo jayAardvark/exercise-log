@@ -133,10 +133,22 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Link to="/">Home</Link>
-          <Link to="/api/exercise/new-user"> new user</Link>
-          <Link to="/api/exercise/add"> add to log</Link>
-          <Link to="/api/exercise/all-logs"> see all logs</Link>
+          <div className="title">Jog Log</div>
+          <Link to="/" className="home-link">
+            Home
+          </Link>
+          <Link to="/api/exercise/new-user" className="new-link">
+            {" "}
+            new user
+          </Link>
+          <Link to="/api/exercise/add" className="add-link">
+            {" "}
+            add to log
+          </Link>
+          <Link to="/api/exercise/all-logs" className="see-link">
+            {" "}
+            see all logs
+          </Link>
           <Link to="/api/exercise/filter-log"> logs by date</Link>
           {!this.state.userId ? (
             <SubmitId submitId={this.submitId} />

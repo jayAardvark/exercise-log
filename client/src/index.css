@@ -1,0 +1,29 @@
+@media (max-width: 700px) {
+  .title {
+    background-color: ;
+    grid-area: title;
+    font-size: 3em;
+    margin: auto;
+  }
+  .add-link {
+    grid-area: add;
+  }
+  .see-link {
+    grid-area: see;
+  }
+  .App {
+    display: grid;
+    grid-template-columns: ;
+    grid-template-areas:
+      "title title"
+      "add see";
+    background-color: orange;
+    height: 100vh;
+  }
+}
+
+@media (min-width: 700px) {
+  .title {
+    display: none;
+  }
+}
