@@ -7,19 +7,19 @@ const isEmpty = require("./is-empty");
 module.exports = function validateRegisterInput(data) {
   let errors = {};
 
-  //in order to test input using Validator, we must ensure that our test data is a string. and so the code below is a precaution.  we utilize the custom made isEmpty as distinguished from the isEmpty provided by Validator.  This code says the following: "if data.name (data.email, etc) is a string, assign it to the variable data.name (data.email, etc); otherwise, ensure that data.name (data.email, etc) is an empty string by assigning "" to data.name (data.email, etc)"
-  data.name = !isEmpty(data.name) ? data.name : "";
+  //in order to test input using Validator, we must ensure that our test data is a string. and so the code below is a precaution.  we utilize the custom made isEmpty as distinguished from the isEmpty provided by Validator.  This code says the following: "if data.username (data.email, etc) is a string, assign it to the variable data.username (data.email, etc); otherwise, ensure that data.username (data.email, etc) is an empty string by assigning "" to data.username (data.email, etc)"
+  data.username = !isEmpty(data.username) ? data.username : "";
   data.email = !isEmpty(data.email) ? data.email : "";
   data.password = !isEmpty(data.password) ? data.password : "";
   data.password2 = !isEmpty(data.password2) ? data.password2 : ""; //password2 is a "confirmation" password
 
-  //the assigning of "" to data.name if data.name isn't already a string allows for the following code since Validator requires strings for testing. the same code follows for the other cases (email, etc)
+  //the assigning of "" to data.username if data.username isn't already a string allows for the following code since Validator requires strings for testing. the same code follows for the other cases (email, etc)
   //code to validate name length
-  if (!Validator.isLength(data.name, { min: 2, max: 30 })) {
-    errors.name = "Name must be between 2 and 30 characters long!";
+  if (!Validator.isLength(data.username, { min: 2, max: 30 })) {
+    errors.username = "Name must be between 2 and 30 characters long!";
   }
-  if (Validator.isEmpty(data.name)) {
-    errors.name = "A name must be included!";
+  if (Validator.isEmpty(data.username)) {
+    errors.username = "A name must be included!";
   }
   if (Validator.isEmpty(data.email)) {
     errors.email = "An email must be included!";

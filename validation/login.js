@@ -7,11 +7,11 @@ const isEmpty = require("./is-empty");
 module.exports = function validateLoginInput(data) {
   let errors = {};
 
-  //in order to test input using Validator, we must ensure that our test data is a string. and so the code below is a precaution.  we utilize the custom made isEmpty as distinguished from the isEmpty provided by Validator.  This code says the following: "if data.name (data.email, etc) is a string, assign it to the variable data.name (data.email, etc); otherwise, ensure that data.name (data.email, etc) is an empty string by assigning "" to data.name (data.email, etc)""
+  //in order to test input using Validator, we must ensure that our test data is a string. and so the code below is a precaution.  we utilize the custom made isEmpty as distinguished from the isEmpty provided by Validator.  This code says the following: "if data.username (data.email, etc) is a string, assign it to the variable data.username (data.email, etc); otherwise, ensure that data.username (data.email, etc) is an empty string by assigning "" to data.username (data.email, etc)""
   data.email = !isEmpty(data.email) ? data.email : "";
   data.password = !isEmpty(data.password) ? data.password : "";
 
-  //the assigning of "" to data.name if data.name isn't already a string allows for the following code since Validator requires strings for testing. the same code follows for the other cases (email, etc)
+  //the assigning of "" to data.username if data.username isn't already a string allows for the following code since Validator requires strings for testing. the same code follows for the other cases (email, etc)
   if (Validator.isEmpty(data.email)) {
     errors.email = "An email must be included!";
   }
