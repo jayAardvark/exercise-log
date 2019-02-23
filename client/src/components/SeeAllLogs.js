@@ -5,10 +5,11 @@ export default function SeeAllLogs(props) {
   let allLogs = props.allLogs;
   let mappedLogs = props.allLogs.map((eachObject /*, index*/) => {
     return (
-      <p key={`${eachObject._id}`}>
+      <div key={`${eachObject._id}`}>
         Date: {eachObject.date} <br />
         Duration: {eachObject.duration} minutes
-      </p>
+        <hr />
+      </div>
     );
   });
 
