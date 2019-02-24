@@ -17,7 +17,7 @@ class Login extends Component {
   //redirect logged in user
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/enterEquipment");
+      this.props.history.push("/addLog");
     }
   }
 
@@ -28,7 +28,7 @@ class Login extends Component {
       });
     }
     if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/enterEquipment"); //redirect if user is logged in
+      this.props.history.push("/addLog"); //redirect if user is logged in
     }
   };
 
