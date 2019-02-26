@@ -57,7 +57,7 @@ class Register extends Component {
     const { user } = this.props.auth;
     const { errors } = this.state;
     return (
-      <div>
+      <div className="register-component">
         {user ? user.name : null}
         <h1>Register component</h1>
         <form onSubmit={this.onSubmit}>
