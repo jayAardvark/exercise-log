@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 //use connect to connect Redux to this component
 import { connect } from "react-redux";
+import isEmpty from "../../validation/is-empty";
 
 export class SeeLogs extends Component {
   constructor() {
@@ -44,7 +45,7 @@ export class SeeLogs extends Component {
     let entries = this.state.entries.log;
     let mappedEntries = entries.map((eachObject /*, index*/) => {
       return (
-        <div key={`${eachObject._id}`}>
+        <div className="list-render" key={`${eachObject._id}`}>
           Date: {eachObject.date} <br />
           Duration: {eachObject.duration} minutes
           <hr />
@@ -58,11 +59,11 @@ export class SeeLogs extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Your JogLog!</h1>
+      <div className="cont-rend">
+        {/* <h4>Here are your logs:</h4> */}
         <form onSubmit={this.seeEntries}>
           <button>See Past Equipment Entries</button>
-          {this.state.mappedEntriesState != "" ? (
+          {!isEmpty(this.state.mappedEntriesState) ? (
             <div>{this.state.mappedEntriesState}</div>
           ) : null}
         </form>

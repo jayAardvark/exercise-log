@@ -64,7 +64,7 @@ export class AddLog extends Component {
 
   render() {
     return (
-      <div>
+      <div className="cont-rend">
         <h1>Enter JogLog</h1>
         <div>
           <form onSubmit={this.onSubmit}>
