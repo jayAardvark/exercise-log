@@ -58,7 +58,8 @@ export class AddLog extends Component {
         .catch(err => console.log(err));
 
       //redirect upon submission? perhaps to SeeAllLogs
-      window.location.href = "/seeLogs";
+      // window.location.href = "/seeLogs";
+      this.props.history.push("/seeLogs");
     }
   };
 
