@@ -57,35 +57,36 @@ class Login extends Component {
     const { errors } = this.state;
     return (
       <div>
-        <h1>Login component</h1>
-        <form onSubmit={this.onSubmit}>
-          <input
-            type="text"
-            name="email"
-            placeholder="email"
-            value={this.state.email}
-            onChange={this.onChange}
-            className={classnames("form-control form-control-lg", {
-              "is-invalid": errors.email
-            })}
-          />
-          {errors.email && (
-            <div className="invalid-feedback">{errors.email}</div>
-          )}
+        <form onSubmit={this.onSubmit} className="login-fields">
+          <div className="form-style">
+            <input
+              type="text"
+              name="email"
+              placeholder="email"
+              value={this.state.email}
+              onChange={this.onChange}
+              className={classnames("form-control form-control-lg", {
+                "is-invalid": errors.email
+              })}
+            />
+            {errors.email && (
+              <div className="invalid-feedback">{errors.email}</div>
+            )}
+          </div>
           <input
             type="text"
             name="password"
             placeholder="password"
             value={this.state.password}
             onChange={this.onChange}
-            className={classnames("form-control form-control-lg", {
+            className={classnames("form-control form-control-lg mt-4", {
               "is-invalid": errors.password
             })}
           />
           {errors.password && (
             <div className="invalid-feedback">{errors.password}</div>
           )}
-          <button>Submit</button>
+          <button className="btn btn-primary btn-block mt-4">Submit</button>
         </form>
       </div>
     );

@@ -21,12 +21,22 @@ class Register extends Component {
     };
   }
 
+  //redirect logged in user
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/addLog");
+    }
+  }
+
   componentWillReceiveProps = nextProps => {
     if (nextProps.errors) {
       //if there is an errors prop, set that to state of this component
       this.setState({
         errors: nextProps.errors
       });
+    }
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/addLog"); //redirect if user is logged in
     }
   };
 
@@ -59,8 +69,7 @@ class Register extends Component {
     return (
       <div className="register-component">
         {user ? user.name : null}
-        <h1>Register component</h1>
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.onSubmit} className="register-fields">
           <input
             type="text"
             name="username"
@@ -80,7 +89,7 @@ class Register extends Component {
             placeholder="email"
             value={this.state.email}
             onChange={this.onChange}
-            className={classnames("form-control form-control-lg", {
+            className={classnames("form-control form-control-lg mt-4", {
               "is-invalid": errors.email
             })}
           />
@@ -93,7 +102,7 @@ class Register extends Component {
             placeholder="password"
             value={this.state.password}
             onChange={this.onChange}
-            className={classnames("form-control form-control-lg", {
+            className={classnames("form-control form-control-lg mt-4", {
               "is-invalid": errors.password
             })}
           />
@@ -106,14 +115,14 @@ class Register extends Component {
             placeholder="password2"
             value={this.state.password2}
             onChange={this.onChange}
-            className={classnames("form-control form-control-lg", {
+            className={classnames("form-control form-control-lg mt-4", {
               "is-invalid": errors.password2
             })}
           />
           {errors.password2 && (
             <div className="invalid-feedback">{errors.password2}</div>
           )}
-          <button>Submit</button>
+          <button className="btn btn-primary btn-block mt-4">Submit</button>
         </form>
       </div>
     );
