@@ -62,7 +62,9 @@ export class SeeLogs extends Component {
       <div className="cont-rend">
         {/* <h4>Here are your logs:</h4> */}
         <form onSubmit={this.seeEntries}>
-          <button>See Past Equipment Entries</button>
+          <button className="btn btn-block btn-primary mb-1">
+            click to load your JogLog
+          </button>
           {!isEmpty(this.state.mappedEntriesState) ? (
             <div>{this.state.mappedEntriesState}</div>
           ) : null}

@@ -64,26 +64,31 @@ export class AddLog extends Component {
   };
 
   render() {
+    let styles = { textAlign: "center" };
     return (
       <div className="cont-rend">
-        <h1>Enter JogLog</h1>
         <div>
-          <form onSubmit={this.onSubmit}>
+          <h1 classNames="" style={styles}>
+            Add to your log!
+          </h1>
+          <form onSubmit={this.onSubmit} className="add-fields">
             <input
               type="text"
               name="duration"
               placeholder="duration of jog in minutes?"
               value={this.state.equipment}
               onChange={this.onChange}
+              className="form-control form-control-lg"
             />
             <input
               type="text"
               name="date"
-              placeholder="date"
+              placeholder="yyyy-mm-dd"
               value={this.state.date}
               onChange={this.onChange}
+              className="form-control form-control-lg mt-4"
             />
-            <button>Submit</button>
+            <button className="btn btn-block btn-primary mt-4">Submit</button>
           </form>
         </div>
       </div>
