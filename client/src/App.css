@@ -1,0 +1,161 @@
+/* @media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+  html {
+    transform: rotate(-90deg);
+    transform-origin: left top;
+    width: 100vh;
+    overflow-x: hidden;
+    position: absolute;
+    top: 100%;
+    left: 0;
+  }
+} */
+
+@media (max-width: 700px) {
+  .title {
+    color: white;
+    grid-area: title;
+    font-size: 3em;
+    margin: auto;
+    margin-top: 0;
+    text-align: center;
+    width: 100%;
+    /* position: absolute; */
+  }
+  .navbar {
+    display: none;
+    position: absolute;
+  }
+  .footer {
+    grid-area: footer;
+    width: 100%;
+    background-color: orange;
+  }
+  /* .login-fields {
+    background-color: orange;
+  } */
+  .form-style {
+    /*  */
+    background-color: white;
+    /* margin-bottom: 2em; */
+  }
+  .login-fields {
+    margin-top: 10em;
+  }
+  .add-fields {
+    margin-top: 5em;
+  }
+  .register-fields {
+    margin-top: 1.5em;
+  }
+  .main-render {
+    grid-area: cont;
+    overflow: scroll;
+    margin: 0px auto 0px auto;
+    /* background-color: orange; */
+    width: 80%;
+    /* border-radius: 10px; */
+    /* opacity: 0.8; */
+  }
+  .list-render {
+    text-align: center;
+  }
+  .mobile-buttons {
+    grid-area: btns;
+    display: flex;
+    justify-content: space-around;
+    /* height: 5em; */
+    margin-top: 3.5em;
+    /* background-color: orange; */
+  }
+  .mob-btns {
+    box-shadow: 1px 2px #555;
+  }
+  .add-link {
+    grid-area: add;
+  }
+  .see-link {
+    grid-area: see;
+  }
+  .App {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "title title title"
+      "cont cont cont"
+      "cont cont cont"
+      "cont cont cont"
+      "btns btns btns"
+      "footer footer footer";
+    /* justify-items: stretch; */
+    justify-content: center;
+    /* background-color: #00f;
+    background-image: linear-gradient(to bottom right, #33f, #005); */
+    overflow: scroll;
+    /* background: url("./img/martins-zemlickis-57243-unsplash.jpg") no-repeat; */
+    background-size: cover;
+    background-position: center;
+  }
+  .App-no-auth {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-areas:
+      "title title title"
+      "cont cont cont"
+      "cont cont cont"
+      "cont cont cont"
+      "cont cont cont"
+      "footer footer footer";
+    grid-gap: 10px;
+    /* justify-items: stretch; */
+    justify-content: center;
+    /* background-color: #00f;
+    background-image: linear-gradient(to bottom right, #33f, #005); */
+    /* overflow: scroll; */
+    /* background: url("./img/martins-zemlickis-57243-unsplash.jpg") no-repeat; */
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+@media (min-width: 700px) {
+  .title {
+    display: none;
+  }
+  .navbar {
+    grid-area: nav;
+    /* display: flex;
+    flex-direction: column; */
+  }
+  .main-render {
+    /* background-color: white; */
+    width: 75%;
+    height: 75%;
+    margin: auto;
+    /* overflow: scroll; */
+    opacity: 0.9;
+    text-align: center;
+  }
+  .mobile-buttons {
+    display: none;
+  }
+  .App {
+    /* background-color: #aaa; */
+    background: url("./img/martins-zemlickis-57243-unsplash.jpg") no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    /* display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-rows: 1fr;
+    grid-template-areas: "nav ."; */
+  }
+  /* .register-component {
+    height: 100vh;
+  } */
+}

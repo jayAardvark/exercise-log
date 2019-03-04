@@ -59,6 +59,11 @@ class App extends Component {
     };
   }
 
+  onClickLogout(e) {
+    e.preventDefault();
+    store.dispatch(logoutUser());
+  }
+
   // filterLog = async e => {
   //   e.preventDefault();
 
@@ -107,6 +112,32 @@ class App extends Component {
               <Route exact path="/addLog" component={AddLog} />
               <Route exact path="/seeLogs" component={SeeLogs} />
             </div>
+            {notLoggedIn ? null : (
+              <div className="mobile-buttons">
+                <button>
+                  <Link
+                    className="btn btn-primary mob-btns m-1 p-4"
+                    to="/addLog"
+                  >
+                    add log
+                  </Link>
+                </button>
+                <button>
+                  <Link
+                    className="btn btn-primary mob-btns m-1 p-4"
+                    to="/seeLogs"
+                  >
+                    see logs
+                  </Link>
+                </button>
+                <button
+                  className="btn btn-secondary mob-btns m-1"
+                  onClick={this.onClickLogout.bind(this)}
+                >
+                  sign out
+                </button>
+              </div>
+            )}
             <Footer />
           </div>
         </Router>
