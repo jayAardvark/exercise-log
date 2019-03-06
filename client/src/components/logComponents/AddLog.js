@@ -68,7 +68,7 @@ export class AddLog extends Component {
     return (
       <div className="cont-rend">
         <div>
-          <h1 classNames="" style={styles}>
+          <h1 className="mt-3" style={styles}>
             Add to your log!
           </h1>
           <form onSubmit={this.onSubmit} className="add-fields">

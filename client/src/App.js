@@ -114,22 +114,17 @@ class App extends Component {
             </div>
             {notLoggedIn ? null : (
               <div className="mobile-buttons">
-                <button>
-                  <Link
-                    className="btn btn-primary mob-btns m-1 p-4"
-                    to="/addLog"
-                  >
-                    add log
-                  </Link>
-                </button>
-                <button>
-                  <Link
-                    className="btn btn-primary mob-btns m-1 p-4"
-                    to="/seeLogs"
-                  >
-                    see logs
-                  </Link>
-                </button>
+                <Link className="btn btn-primary mob-btns m-1 p-4" to="/addLog">
+                  add log
+                </Link>
+
+                <Link
+                  className="btn btn-primary mob-btns m-1 p-4"
+                  to="/seeLogs"
+                >
+                  see logs
+                </Link>
+
                 <button
                   className="btn btn-secondary mob-btns m-1"
                   onClick={this.onClickLogout.bind(this)}

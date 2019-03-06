@@ -57,6 +57,7 @@ class Login extends Component {
     const { errors } = this.state;
     return (
       <div>
+        <h1 className="mt-3">Log In</h1>
         <form onSubmit={this.onSubmit} className="login-fields">
           <div className="form-style">
             <input

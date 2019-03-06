@@ -69,6 +69,7 @@ class Register extends Component {
     return (
       <div className="register-component">
         {user ? user.name : null}
+        <h1 className="mt-3">Sign Up</h1>
         <form onSubmit={this.onSubmit} className="register-fields">
           <input
             type="text"
@@ -112,7 +113,7 @@ class Register extends Component {
           <input
             type="text"
             name="password2"
-            placeholder="password2"
+            placeholder="confirm password"
             value={this.state.password2}
             onChange={this.onChange}
             className={classnames("form-control form-control-lg mt-4", {
