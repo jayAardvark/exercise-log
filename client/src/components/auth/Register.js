@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 //we need to be able to redirect from within an action. bring in withRouter
 //look at very last line of code in this file
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 
 class Register extends Component {
   constructor() {
@@ -69,7 +69,7 @@ class Register extends Component {
     return (
       <div className="register-component">
         {user ? user.name : null}
-        <h1 className="mt-3">Sign Up</h1>
+        <h1 className="mt-3 desktop-text">Sign Up</h1>
         <form onSubmit={this.onSubmit} className="register-fields">
           <input
             type="text"
@@ -98,6 +98,7 @@ class Register extends Component {
             <div className="invalid-feedback">{errors.email}</div>
           )}
           <input
+            autoComplete="off"
             type="text"
             name="password"
             placeholder="password"
@@ -111,6 +112,7 @@ class Register extends Component {
             <div className="invalid-feedback">{errors.password}</div>
           )}
           <input
+            autoComplete="off"
             type="text"
             name="password2"
             placeholder="confirm password"
@@ -126,6 +128,15 @@ class Register extends Component {
           <button type="submit" className="btn btn-primary btn-block mt-4">
             create account
           </button>
+          <div className="demo-btn-reg">
+            <p className="mt-3">- OR -</p>
+            <Link
+              className="btn btn-primary btn-block demo-btn-reg "
+              to="/demo-login"
+            >
+              use demo account
+            </Link>
+          </div>
         </form>
       </div>
     );

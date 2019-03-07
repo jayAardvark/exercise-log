@@ -57,7 +57,7 @@ class DemoLogin extends Component {
     const { errors } = this.state;
     return (
       <div>
-        <h1 className="mt-3">Log In</h1>
+        <h1 className="mt-3 desktop-text">Log In</h1>
         <p>
           a valid email and password have been entered into fields.
           <br /> click submit to continue.
@@ -79,6 +79,7 @@ class DemoLogin extends Component {
             )}
           </div>
           <input
+            autoComplete="off"
             type="text"
             name="password"
             placeholder="password"

@@ -95,9 +95,10 @@ export class AddLog extends Component {
           </h1>
           <form onSubmit={this.onSubmit} className="add-fields">
             <input
+              autoComplete="off"
               type="text"
               name="duration"
-              placeholder="how long was your jog?"
+              placeholder="enter jog duration"
               value={this.state.equipment}
               onChange={this.onChange}
               // className="form-control form-control-lg"
@@ -111,9 +112,10 @@ export class AddLog extends Component {
               </div>
             )}
             <input
+              autoComplete="off"
               type="text"
               name="date"
-              placeholder="yyyy-mm-dd"
+              placeholder="enter the date"
               value={this.state.date}
               onChange={this.onChange}
               // className="form-control form-control-lg mt-4"
