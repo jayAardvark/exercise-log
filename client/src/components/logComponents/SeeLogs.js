@@ -47,7 +47,7 @@ export class SeeLogs extends Component {
       return (
         <div className="list-render" key={`${eachObject._id}`}>
           Date: {eachObject.date} <br />
-          Duration: {eachObject.duration} minutes
+          Duration: {eachObject.duration}
           <hr />
         </div>
       );

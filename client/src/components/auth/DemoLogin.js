@@ -3,14 +3,13 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import classnames from "classnames";
-import { Link } from "react-router-dom";
 
-class Login extends Component {
+class DemoLogin extends Component {
   constructor() {
     super();
     this.state = {
-      email: "",
-      password: "",
+      email: "demoAccount@mail.com",
+      password: "%$*fGbAAo29*",
       errors: {}
     };
   }
@@ -59,6 +58,10 @@ class Login extends Component {
     return (
       <div>
         <h1 className="mt-3">Log In</h1>
+        <p>
+          a valid email and password have been entered into fields.
+          <br /> click submit to continue.
+        </p>
         <form onSubmit={this.onSubmit} className="login-fields">
           <div className="form-style">
             <input
@@ -88,20 +91,14 @@ class Login extends Component {
           {errors.password && (
             <div className="invalid-feedback">{errors.password}</div>
           )}
-          <button type="submit" className="btn btn-primary btn-block mt-4">
-            submit
-          </button>
-          <p className="mt-4">- OR -</p>
-          <Link className="btn btn-primary btn-block mt-4" to="/demo-login">
-            use demo account
-          </Link>
+          <button className="btn btn-primary btn-block mt-4">submit</button>
         </form>
       </div>
     );
   }
 }
 
-Login.propTypes = {
+DemoLogin.propTypes = {
   loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
@@ -118,4 +115,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { loginUser }
-)(Login);
+)(DemoLogin);

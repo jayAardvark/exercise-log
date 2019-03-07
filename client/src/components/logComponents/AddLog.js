@@ -11,7 +11,11 @@ export class AddLog extends Component {
     super();
     this.state = {
       duration: "",
-      date: ""
+      date: "",
+      errors: {
+        // duration: "",
+        // date: ""
+      }
     };
   }
 
@@ -47,7 +51,25 @@ export class AddLog extends Component {
       date: this.state.date
     };
 
-    if (
+    //check if duration is an integer value and if date is in the form yyyy-mm-dd
+
+    //check if either is
+    if (isEmpty(entryData.duration) && isEmpty(entryData.date)) {
+      this.setState({
+        errors: {
+          duration: "Be sure to include jog duration!",
+          date: "Be sure to include a date!"
+        }
+      });
+    } else if (isEmpty(entryData.duration)) {
+      this.setState({
+        errors: { duration: "Be sure to include jog duration!" }
+      });
+    } else if (isEmpty(entryData.date)) {
+      this.setState({ errors: { date: "Be sure to include a date!" } });
+    }
+    //check if either
+    else if (
       //in the future, refine this input check/validation
       !isEmpty(entryData.duration) &&
       !isEmpty(entryData.date)
@@ -75,19 +97,33 @@ export class AddLog extends Component {
             <input
               type="text"
               name="duration"
-              placeholder="duration of jog in minutes?"
+              placeholder="how long was your jog?"
               value={this.state.equipment}
               onChange={this.onChange}
-              className="form-control form-control-lg"
+              // className="form-control form-control-lg"
+              className={classnames("form-control form-control-lg", {
+                "is-invalid": this.state.errors.duration
+              })}
             />
+            {this.state.errors.duration && (
+              <div className="invalid-feedback">
+                {this.state.errors.duration}
+              </div>
+            )}
             <input
               type="text"
               name="date"
               placeholder="yyyy-mm-dd"
               value={this.state.date}
               onChange={this.onChange}
-              className="form-control form-control-lg mt-4"
+              // className="form-control form-control-lg mt-4"
+              className={classnames("form-control form-control-lg mt-4", {
+                "is-invalid": this.state.errors.date
+              })}
             />
+            {this.state.errors.date && (
+              <div className="invalid-feedback">{this.state.errors.date}</div>
+            )}
             <button className="btn btn-block btn-primary mt-4">Submit</button>
           </form>
         </div>

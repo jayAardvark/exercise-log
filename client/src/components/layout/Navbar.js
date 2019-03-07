@@ -23,7 +23,7 @@ class Navbar extends Component {
       <ul className="navbar-nav ml-auto">
         <li className="nav-item">
           <Link className="nav-link" to="/register">
-            Sign Up
+            Signup
           </Link>
         </li>
         <li className="nav-item">
@@ -61,9 +61,15 @@ class Navbar extends Component {
     return (
       <nav className="navbar navbar-expand-sm navbar-dark bg-success mb-4">
         <div className="container">
-          <Link className="navbar-brand" to="/">
-            JogLog
-          </Link>
+          {isAuthenticated ? (
+            <Link className="navbar-brand" to="/addLog">
+              JogLog
+            </Link>
+          ) : (
+            <Link className="navbar-brand" to="/">
+              JogLog
+            </Link>
+          )}
           {/* <button
             className="navbar-toggler"
             type="button"
