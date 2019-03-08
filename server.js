@@ -1,18 +1,10 @@
 const express = require("express");
-const app = express();
-const mongoose = require("mongoose");
-const path = require("path");
-const db = require("./config/keys").MLAB_URI;
-const passport = require("passport");
 
-mongoose
-  .connect(db)
-  .then(() => console.log("db connection successful!"))
-  .catch(err => console.log(err));
+const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
-//body-parser middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+
+const passport = require("passport");
+const path = require("path");
 
 //api routes
 const newUser = require("./routes/api/newUser");
@@ -23,6 +15,19 @@ const filterLog = require("./routes/api/filterLog");
 const getAllLogs = require("./routes/api/getAllLogs");
 const returnUser = require("./routes/api/returnUser");
 const userAuth = require("./routes/api/userAuth");
+
+const app = express();
+
+//body-parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+const db = require("./config/keys").MLAB_URI;
+
+mongoose
+  .connect(db)
+  .then(() => console.log("db connection successful!"))
+  .catch(err => console.log(err));
 
 //Create Passport Middleware
 app.use(passport.initialize());
@@ -49,7 +54,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.get("/", (req, res) => res.send("Hello!"));
+// app.get("/", (req, res) => res.send("Hello!"));
 
 const port = process.env.PORT || 5000;
 
