@@ -1,9 +1,10 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const path = require("path");
 const db = require("./config/keys").MLAB_URI;
 const passport = require("passport");
-const path = require("path");
+
 mongoose
   .connect(db)
   .then(() => console.log("db connection successful!"))
@@ -44,7 +45,7 @@ if (process.env.NODE_ENV === "production") {
 
   //for any route that gets hit '*', load the react index.html file
   app.get("*", (req, res) => {
-    res.sendfile(path.resolve(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
 }
 
