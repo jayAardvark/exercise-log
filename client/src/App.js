@@ -3,12 +3,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import FilterLog from "./components/FilterLog";
 import Welcome from "./components/Welcome";
+import About from "./components/About";
 import ReturnUser from "./components/ReturnUser";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import DemoLogin from "./components/auth/DemoLogin";
 import AddLog from "./components/logComponents/AddLog";
 import SeeLogs from "./components/logComponents/SeeLogs";
 import Navbar from "./components/layout/Navbar";
+import NavbarButtons from "./components/layout/NavbarButtons";
 import Footer from "./components/layout/Footer";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from "axios";
@@ -83,25 +86,11 @@ class App extends Component {
   // };
 
   render() {
-    //if user isn't logged in, user classnames to assign different classNames
-    //for different screen render
-    let notLoggedIn;
-    if (localStorage.jwtToken) {
-      console.log("token in storage");
-      notLoggedIn = false;
-    } else {
-      notLoggedIn = true;
-    }
-
     return (
       <Provider store={store}>
         <Router>
           {/* <div className="App"> */}
-          <div
-            className={classnames("App", {
-              "App-no-auth": notLoggedIn
-            })}
-          >
+          <div className="App">
             <div className="title bg-success">JogLog</div>
             <Navbar className="navbar" />
             <div className="main-render">
@@ -109,30 +98,13 @@ class App extends Component {
               <Route exact path="/return-user" component={ReturnUser} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/demo-login" component={DemoLogin} />
               <Route exact path="/addLog" component={AddLog} />
               <Route exact path="/seeLogs" component={SeeLogs} />
+              <Route exact path="/about" component={About} />
             </div>
-            {notLoggedIn ? null : (
-              <div className="mobile-buttons">
-                <Link className="btn btn-primary mob-btns m-1 p-4" to="/addLog">
-                  add log
-                </Link>
 
-                <Link
-                  className="btn btn-primary mob-btns m-1 p-4"
-                  to="/seeLogs"
-                >
-                  see logs
-                </Link>
-
-                <button
-                  className="btn btn-secondary mob-btns m-1"
-                  onClick={this.onClickLogout.bind(this)}
-                >
-                  sign out
-                </button>
-              </div>
-            )}
+            <NavbarButtons />
             <Footer />
           </div>
         </Router>

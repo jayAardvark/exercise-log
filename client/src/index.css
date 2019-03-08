@@ -1,4 +1,4 @@
-@media (max-width: 700px) {
+/* @media (max-width: 700px) {
   .title {
     background-color: ;
     grid-area: title;
@@ -16,14 +16,21 @@
     grid-template-columns: ;
     grid-template-areas:
       "title title"
-      "add see";
+      "add see"
+      "footer footer";
     background-color: orange;
     height: 100vh;
   }
 }
 
 @media (min-width: 700px) {
+  .App {
+    background-color: #aaa;
+  }
   .title {
     display: none;
   }
-}
+  .register-component {
+    height: 100vh;
+  }
+} */
