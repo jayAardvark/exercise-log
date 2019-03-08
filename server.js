@@ -22,7 +22,7 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const db = require("./config/keys").MLAB_URI;
+const db = require("./config/keys").mongoURI;
 
 mongoose
   .connect(db)
@@ -46,7 +46,7 @@ app.use("/api/userAuth", userAuth);
 //if in production, we serve the static assets
 if (process.env.NODE_ENV === "production") {
   //set static folder
-  app.use(express.static("client/build "));
+  app.use(express.static("client/build"));
 
   //for any route that gets hit '*', load the react index.html file
   app.get("*", (req, res) => {
