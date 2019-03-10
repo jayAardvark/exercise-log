@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import FilterLog from "./components/FilterLog";
+// import FilterLog from "./components/FilterLog";
 import Welcome from "./components/Welcome";
 import About from "./components/About";
 import ReturnUser from "./components/ReturnUser";
@@ -13,12 +13,10 @@ import SeeLogs from "./components/logComponents/SeeLogs";
 import Navbar from "./components/layout/Navbar";
 import NavbarButtons from "./components/layout/NavbarButtons";
 import Footer from "./components/layout/Footer";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import axios from "axios";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 //Provider will provide the store
 import { Provider } from "react-redux";
 import store from "./store";
-import classnames from "classnames";
 
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 //use connect to connect Redux to this component
