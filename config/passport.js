@@ -17,7 +17,7 @@ module.exports = passport => {
   //consult passport documentation
   passport.use(
     new JwtStrategy(opts, (jwt_payload, done) => {
-      console.log(jwt_payload);
+      // console.log(jwt_payload);
       //access info of user
       User.findById(jwt_payload.id)
         .then(user => {

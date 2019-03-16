@@ -22,27 +22,25 @@ import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 
-//we'll check for token. writing this here checks for every page request
-//essentially, this checks if user is logged in and prevents state
+//check for token for every page request
+//is user logged in? if so, prevent state
 //from being cleared upon refresh.
-//we set auth header
-//we decode token and get data
-//we set call the setCurrentUser action to set user and to set isAuthenticated
+//set auth header
+//decode token and get data
+//call the setCurrentUser action to set user and to set isAuthenticated
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
   const decoded = jwt_decode(localStorage.jwtToken);
   //call action
   store.dispatch(setCurrentUser(decoded));
 
-  //we also check for an expired token
-  //compare in milliseconds
+  //check for an expired token in ms
   const timeNow = Date.now() / 1000;
   if (decoded.exp < timeNow) {
-    //call logoutUser action
+    //call logoutUser action if expired
     store.dispatch(logoutUser());
-    //we'll also clear the current profile
 
-    //after user is logged out, we redirect to login
+    //redirect to login if user was logged out
     window.location.href = "/login";
   }
 }
@@ -64,25 +62,6 @@ class App extends Component {
     e.preventDefault();
     store.dispatch(logoutUser());
   }
-
-  // filterLog = async e => {
-  //   e.preventDefault();
-
-  //   if (this.state.userId) {
-  //     let userId = this.state.userId;
-  //     let from = e.target.from.value;
-  //     let to = e.target.to.value;
-
-  //     const res = await axios.get(
-  //       `/api/exercise/filter-log?userId=${userId}&from=${from}&to=${to}`
-  //     );
-  //     const { data } = await res;
-  //     this.setState({
-  //       filteredLog: data.filteredLog
-  //     });
-  //   } else return;
-  // };
-
   render() {
     return (
       <Provider store={store}>

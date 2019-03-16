@@ -51,7 +51,7 @@ class DemoLogin extends Component {
     //call action
     this.props.loginUser(user);
 
-    console.log(user);
+    // console.log(user);
   };
   render() {
     const { errors } = this.state;

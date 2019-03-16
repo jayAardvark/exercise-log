@@ -36,7 +36,7 @@ export class SeeLogs extends Component {
 
     const res = await axios.get("/api/exercise/all-logs");
     const { data } = await res;
-    console.log(data);
+    // console.log(data);
     this.setState({
       entries: data
     });
