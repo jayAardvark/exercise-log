@@ -1,3 +1,7 @@
-### This is a sketch of an app that will log exercises. I'm not sure, yet, how the data will be displayed.
+This is a simple project that I made to keep track of when I jog and for how long. 
 
-#### I will use Node, Express, MongoDB and React.
+front-end: React, CSS Grid (to mimic a layout that I think better suits mobile devices instead of the standard navbar with hamburger menu layout), Bootstrap
+
+back-end: Node, Express, Mongoose
+
+authentication: json web token strategy
