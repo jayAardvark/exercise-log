@@ -62,6 +62,25 @@ class App extends Component {
     e.preventDefault();
     store.dispatch(logoutUser());
   }
+
+  // filterLog = async e => {
+  //   e.preventDefault();
+
+  //   if (this.state.userId) {
+  //     let userId = this.state.userId;
+  //     let from = e.target.from.value;
+  //     let to = e.target.to.value;
+
+  //     const res = await axios.get(
+  //       `/api/exercise/filter-log?userId=${userId}&from=${from}&to=${to}`
+  //     );
+  //     const { data } = await res;
+  //     this.setState({
+  //       filteredLog: data.filteredLog
+  //     });
+  //   } else return;
+  // };
+
   render() {
     return (
       <Provider store={store}>
